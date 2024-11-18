@@ -1,0 +1,204 @@
+diff -Naur -ruB chatterino7-master/resources/qss/settings.qss chatterino7-nativeQT/resources/qss/settings.qss
+--- chatterino7-master/resources/qss/settings.qss	2024-09-28 16:12:58.000000000 +0000
++++ chatterino7-nativeQT/resources/qss/settings.qss	2024-09-29 06:55:58.188097285 +0000
+@@ -1,6 +1,5 @@
+ * {
+     font-size: 14px;
+-    font-family: "Segoe UI";
+ }
+ 
+ QCheckBox::indicator {
+@@ -9,60 +8,25 @@
+ }
+ 
+ chatterino--ComboBox {
+-    width: 120px;
+-}
+-
+-QScrollArea {
+-    border: none;
+-}
+-
+-QScrollArea QFrame {
+-    border: none;
+-}
+-
+-QComboBox QFrame {
+-    background: #000;
+-    border: 1px solid #66BCFF;
++    min-width: 120px;
+ }
+ 
+ chatterino--SettingsDialog chatterino--SettingsDialogTab {
+-    font-family: "Segoe UI";
+     font-size: 14;
+ }
+ 
+-chatterino--SettingsPage #generalSettingsScrollContent {
+-    background: #222;
+-}
+-
+-chatterino--SettingsPage QToolTip {
+-    padding: 2px;
+-    background-color: #333333;
+-    border: 1px solid #545454;
+-    color: white;
+-}
+-
+ chatterino--PageHeader {
+     margin-bottom: 12px;
+ }
+ 
+ chatterino--TitleLabel {
+-    font-family: "Segoe UI light";
+     font-size: 24px;
+-    color: #4FC3F7; /* Should this be same as accent color? */
+ }
+ 
+ chatterino--SubtitleLabel {
+-    font-family: "Segoe UI light";
+     font-size: 16px;
+-    color: #4FC3F7; /* Should this be same as accent color? */
+-}
+-
+-chatterino--DescriptionLabel {
+-    color: #999;
+ }
+ 
+ chatterino--NavigationLabel {
+-    font-family: "Segoe UI light";
+     font-size: 15px;
+-    color: #A6DDF4;
+-}
++}
+\ No newline at end of file
+diff -Naur -ruB chatterino7-master/src/RunGui.cpp chatterino7-nativeQT/src/RunGui.cpp
+--- chatterino7-master/src/RunGui.cpp	2024-09-28 16:12:58.000000000 +0000
++++ chatterino7-nativeQT/src/RunGui.cpp	2024-09-29 06:55:41.475859647 +0000
+@@ -86,8 +86,6 @@
+         QApplication::setAttribute(Qt::AA_DontCreateNativeWidgetSiblings);
+ #endif
+ 
+-        QApplication::setStyle(QStyleFactory::create("Fusion"));
+-
+ #ifndef Q_OS_MAC
+         QApplication::setWindowIcon(QIcon(":/icon.ico"));
+ #endif
+@@ -99,7 +97,6 @@
+                                    false);
+ #endif
+ 
+-        installCustomPalette();
+     }
+ 
+     void showLastCrashDialog(const Args &args, const Paths &paths)
+diff -Naur -ruB chatterino7-master/src/widgets/dialogs/SettingsDialog.cpp chatterino7-nativeQT/src/widgets/dialogs/SettingsDialog.cpp
+--- chatterino7-master/src/widgets/dialogs/SettingsDialog.cpp	2024-09-28 16:12:58.000000000 +0000
++++ chatterino7-nativeQT/src/widgets/dialogs/SettingsDialog.cpp	2024-09-29 06:55:58.189097299 +0000
+@@ -50,11 +50,19 @@
+     QFile styleFile(":/qss/settings.qss");
+     styleFile.open(QFile::ReadOnly);
+     QString stylesheet = QString::fromUtf8(styleFile.readAll());
++    QString ogPlt_Hi,ogPlt_LV,ogPlt_PHT,styleShit;
++        ogPlt_Hi = QColor(QApplication::palette().color(QPalette::Highlight)).name();
++        ogPlt_LV = QColor(QApplication::palette().color(QPalette::LinkVisited)).name();
++        ogPlt_PHT = QColor(QApplication::palette().color(QPalette::PlaceholderText)).name();
++        styleShit = QString("chatterino--TitleLabel, chatterino--SubtitleLabel { color: %1 }\
++                             chatterino--DescriptionLabel { color: %2 }\
++                             chatterino--NavigationLabel { color: %3 }")
++                             .arg(ogPlt_Hi).arg(ogPlt_PHT).arg(ogPlt_LV);
++    stylesheet.prepend(styleShit);
+     this->setStyleSheet(stylesheet);
+ 
+     this->initUi();
+     this->addTabs();
+-    this->overrideBackgroundColor_ = QColor("#111111");
+ 
+     this->addShortcuts();
+     this->signalHolder_.managedConnect(getApp()->getHotkeys()->onItemsUpdated,
+@@ -293,13 +301,15 @@
+     if (this->selectedTab_ != nullptr)
+     {
+         this->selectedTab_->setSelected(false);
+-        this->selectedTab_->setStyleSheet("color: #FFF");
++        this->selectedTab_->setStyleSheet("");
+     }
+ 
++    QString tabStyleShit = QString("background: %1; color: %2;")
++        .arg(QColor(QApplication::palette().color(QPalette::Highlight)).name()) // Should this be ::Accent color?
++        .arg(QColor(QApplication::palette().color(QPalette::HighlightedText)).name());
++
+     tab->setSelected(true);
+-    tab->setStyleSheet(
+-        "background: #222; color: #4FC3F7;"  // Should this be same as accent color?
+-        "/*border: 1px solid #555; border-right: none;*/");
++    tab->setStyleSheet(tabStyleShit);
+     this->selectedTab_ = tab;
+     if (byUser)
+     {
+@@ -419,7 +429,6 @@
+     BaseWindow::themeChangedEvent();
+ 
+     QPalette palette;
+-    palette.setColor(QPalette::Window, QColor("#111"));
+     this->setPalette(palette);
+ }
+ 
+diff -Naur -ruB chatterino7-master/src/widgets/helper/SettingsDialogTab.cpp chatterino7-nativeQT/src/widgets/helper/SettingsDialogTab.cpp
+--- chatterino7-master/src/widgets/helper/SettingsDialogTab.cpp	2024-09-28 16:12:58.000000000 +0000
++++ chatterino7-nativeQT/src/widgets/helper/SettingsDialogTab.cpp	2024-09-29 06:55:58.189097299 +0000
+@@ -23,7 +23,7 @@
+ 
+     this->setCursor(QCursor(Qt::PointingHandCursor));
+ 
+-    this->setStyleSheet("color: #FFF");
++    this->setStyleSheet("");
+ }
+ 
+ void SettingsDialogTab::setSelected(bool _selected)
+@@ -54,6 +54,7 @@
+ void SettingsDialogTab::paintEvent(QPaintEvent *)
+ {
+     QPainter painter(this);
++    QPainter ppcolor;
+ 
+     QStyleOption opt;
+     opt.initFrom(this);
+@@ -65,6 +66,11 @@
+     QPixmap pixmap = this->ui_.icon.pixmap(
+         QSize(this->height() - pad * 2, this->height() - pad * 2));
+ 
++    ppcolor.begin(&pixmap);
++    ppcolor.setCompositionMode(QPainter::CompositionMode_SourceIn);
++    ppcolor.fillRect(pixmap.rect(), QColor(this->palette().color(QPalette::Text)).name());
++    ppcolor.end();
++
+     painter.drawPixmap(pad, pad, pixmap);
+ 
+     pad = (3 * pad) + iconSize;
+diff -Naur -ruB chatterino7-master/src/widgets/settingspages/AccountsPage.cpp chatterino7-nativeQT/src/widgets/settingspages/AccountsPage.cpp
+--- chatterino7-master/src/widgets/settingspages/AccountsPage.cpp	2024-09-28 16:12:58.000000000 +0000
++++ chatterino7-nativeQT/src/widgets/settingspages/AccountsPage.cpp	2024-09-29 06:55:58.189097299 +0000
+@@ -39,8 +39,6 @@
+         d.exec();
+     });
+ 
+-    view->getTableView()->setStyleSheet("background: #333");
+-
+     //    auto buttons = layout.emplace<QDialogButtonBox>();
+     //    {
+     //        this->addButton = buttons->addButton("Add",
+diff -Naur -ruB chatterino7-master/src/widgets/settingspages/GeneralPageView.cpp chatterino7-nativeQT/src/widgets/settingspages/GeneralPageView.cpp
+--- chatterino7-master/src/widgets/settingspages/GeneralPageView.cpp	2024-09-28 16:12:58.000000000 +0000
++++ chatterino7-nativeQT/src/widgets/settingspages/GeneralPageView.cpp	2024-09-29 06:55:58.190097313 +0000
+@@ -414,7 +414,9 @@
+                       &group == &this->groups_.back()))
+         {
+             first = false;
+-            group.navigationLink->setStyleSheet("color: #00ABF4");
++            QString navStyleShit = QString("color: %1;")
++                .arg(QColor(this->palette().color(QPalette::Highlight)).name()); // Should this be ::Accent color?
++            group.navigationLink->setStyleSheet(navStyleShit);
+         }
+         else
+         {
