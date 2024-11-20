@@ -13,3 +13,7 @@ They're intended to force Chatterino to use your native system-wide QT Style and
 Some QT Styles like the [Kvantum](https://github.com/tsujan/Kvantum) theming engine or [Lightly](https://github.com/Luwx/Lightly) support transparent windows. This allows us to use [transparency in Chatterino themes](/Themes).
 
 ![settings](Themes/previews/nord-dark.webp)
+
+# Installation
+## Arch Linux
+[chatterino2-7tv-native-git](https://aur.archlinux.org/packages/chatterino2-7tv-native-git) is available in the [Arch User Repository](https://aur.archlinux.org/)
