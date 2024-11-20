@@ -9,11 +9,15 @@ However Chatterino is hardcoded to use QT's Fusion style and it must be patched 
 ## Chocula
 Designed to compliment the [Chocula Desktop Theme](https://github.com/SueDonham/chocula-desktop-theme); a chocolaty spin on the popular [Dracula Theme](https://github.com/dracula/gtk)
 
+![settings](previews/chocula.webp)
+
 ## Nord Dark
-Designed with [Utterly Nord](https://github.com/HimDek/Utterly-Nord-Plasma) in mind, this theme should feel at home with most dark [Nord](https://www.nordtheme.com/) inspired themes
+Designed with [Utterly Nord](https://github.com/HimDek/Utterly-Nord-Plasma) in mind, this theme should feel at home with most dark [Nord](https://www.nordtheme.com/) inspired themes  
+
+![settings](previews/nord-dark.webp)
 
 # Installation
-These themes can be installed by placing any of the JSON files into your chatterino themes folder:
+These themes can be installed by placing any of the JSON files into your chatterino themes folder and restarting Chatterino:
 ```
 ~/.local/share/chatterino/Themes
 ```
