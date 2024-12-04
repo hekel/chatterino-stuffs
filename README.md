@@ -9,7 +9,8 @@ They're intended to force Chatterino to use your native system-wide QT Style and
 ![settings dialog](native-qt/previews/settings-4.webp)
 
 ### Y Tho?
-Some QT Styles like the [Kvantum](https://github.com/tsujan/Kvantum) theming engine or [Lightly](https://github.com/Luwx/Lightly) support transparent windows. This allows us to use [transparency in Chatterino themes](/Themes).
+Well, apart from wanting Chatterino to homogeneously blend-in with the rest of my desktop and have a uniform appearance;
+Some QT Styles like the [Kvantum](https://github.com/tsujan/Kvantum) theming engine or [Lightly](https://github.com/Luwx/Lightly) support transparent windows. This allows us to easilly use [transparency in Chatterino themes](/Themes).
 
 ![main window themed](Themes/previews/nord-dark.webp)
 
