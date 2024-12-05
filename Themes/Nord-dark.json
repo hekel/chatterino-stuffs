@@ -64,22 +64,22 @@
       },
       "newMessage": {
         "backgrounds": {
-          "hover": "#ff00ff",
+          "hover": "#aa313a48",
           "regular": "#88313a48",
-          "unfocused": "#88313a48"
+          "unfocused": "#88313244"
         },
         "line": {
           "hover": "#aa74c7ec",
           "regular": "#5574c7ec",
-          "unfocused": "#2274c7ec"
+          "unfocused": "#3374c7ec"
         },
-        "text": "#BAC2DE"
+        "text": "#bac2de"
       },
       "regular": {
         "backgrounds": {
-          "hover": "#181825",
+          "hover": "#882E3440",
           "regular": "#002E3440",
-          "unfocused": "#00181926"
+          "unfocused": "#00181825"
         },
         "line": {
           "hover": "#00181825",
@@ -92,7 +92,7 @@
         "backgrounds": {
           "hover": "#44313244",
           "regular": "#4c566a",
-          "unfocused": "#44313244"
+          "unfocused": "#cc414254"
         },
         "line": {
           "hover": "#ee74c7ec",
