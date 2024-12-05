@@ -11,6 +11,11 @@ Designed to compliment the [Chocula Desktop Theme](https://github.com/SueDonham/
 
 ![settings](previews/chocula.webp)
 
+## Nord
+Designed with [Utterly Nord](https://github.com/HimDek/Utterly-Nord-Plasma) in mind, this theme should feel at home with most dark [Nord](https://www.nordtheme.com/) inspired themes  
+
+![settings](previews/nord.webp)  
+
 ## Nord Dark
 Designed with [Utterly Nord](https://github.com/HimDek/Utterly-Nord-Plasma) in mind, this theme should feel at home with most dark [Nord](https://www.nordtheme.com/) inspired themes  
 
