@@ -1,6 +1,6 @@
-diff -Naur -ruB chatterino7-master/resources/qss/settings.qss chatterino7-nativeQT/resources/qss/settings.qss
---- chatterino7-master/resources/qss/settings.qss	2024-09-28 16:12:58.000000000 +0000
-+++ chatterino7-nativeQT/resources/qss/settings.qss	2024-09-29 06:55:58.188097285 +0000
+diff -Naur -ruB chatterino7-master/resources/qss/settings.qss chatterino7-native-qss/resources/qss/settings.qss
+--- chatterino7-master/resources/qss/settings.qss	2024-12-08 16:35:36.000000000 +0000
++++ chatterino7-native-qss/resources/qss/settings.qss	2024-12-09 22:12:37.075711197 +0000
 @@ -1,6 +1,5 @@
  * {
      font-size: 14px;
@@ -8,7 +8,7 @@ diff -Naur -ruB chatterino7-master/resources/qss/settings.qss chatterino7-native
  }
  
  QCheckBox::indicator {
-@@ -9,60 +8,25 @@
+@@ -9,65 +8,29 @@
  }
  
  chatterino--ComboBox {
@@ -63,6 +63,11 @@ diff -Naur -ruB chatterino7-master/resources/qss/settings.qss chatterino7-native
 -
 -chatterino--DescriptionLabel {
 -    color: #999;
+ }
+ 
+ QLabel#description {
+-    color: #999;
+     padding-left: 10px;
  }
  
  chatterino--NavigationLabel {
