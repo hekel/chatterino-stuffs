@@ -1,0 +1,12 @@
+diff -Naur -ruB chatterino7-ORIG/src/widgets/Notebook.cpp chatterino7-opacity-fix/src/widgets/Notebook.cpp
+--- chatterino7-ORIG/src/widgets/Notebook.cpp	2025-04-20 17:25:56.000000000 +0000
++++ chatterino7-opacity-fix/src/widgets/Notebook.cpp	2025-04-23 09:35:27.887097041 +0000
+@@ -1193,6 +1193,8 @@
+     auto scale = this->scale();
+ 
+     QPainter painter(this);
++    painter.fillRect(this->geometry(), this->theme->window.background);
++
+     if (this->tabLocation_ == NotebookTabLocation::Top ||
+         this->tabLocation_ == NotebookTabLocation::Bottom)
+     {
