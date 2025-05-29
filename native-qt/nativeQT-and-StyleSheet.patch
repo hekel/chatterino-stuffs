@@ -77,26 +77,26 @@ diff -Naur -ruB chatterino7-master/resources/qss/settings.qss chatterino7-native
 -}
 +}
 \ No newline at end of file
-diff -Naur -ruB chatterino7-master/src/RunGui.cpp chatterino7-nativeQT/src/RunGui.cpp
---- chatterino7-master/src/RunGui.cpp	2024-09-28 16:12:58.000000000 +0000
-+++ chatterino7-nativeQT/src/RunGui.cpp	2024-09-29 06:55:41.475859647 +0000
-@@ -86,8 +86,6 @@
-         QApplication::setAttribute(Qt::AA_DontCreateNativeWidgetSiblings);
+diff -Naur -ruB chatterino7-ORIG/src/RunGui.cpp chatterino7-nativeQT/src/RunGui.cpp
+--- chatterino7-ORIG/src/RunGui.cpp	2025-05-25 09:07:00.000000000 +0000
++++ chatterino7-nativeQT/src/RunGui.cpp	2025-05-26 03:41:40.524552405 +0000
+@@ -87,8 +87,6 @@
+     QApplication::setAttribute(Qt::AA_DontCreateNativeWidgetSiblings);
  #endif
  
--        QApplication::setStyle(QStyleFactory::create("Fusion"));
+-    QApplication::setStyle(QStyleFactory::create("Fusion"));
 -
  #ifndef Q_OS_MAC
-         QApplication::setWindowIcon(QIcon(":/icon.ico"));
+     QApplication::setWindowIcon(QIcon(":/icon.ico"));
  #endif
 @@ -99,7 +97,6 @@
-                                    false);
+     QApplication::setAttribute(Qt::AA_DontShowShortcutsInContextMenus, false);
  #endif
  
--        installCustomPalette();
-     }
+-    installCustomPalette();
+ }
  
-     void showLastCrashDialog(const Args &args, const Paths &paths)
+ void showLastCrashDialog(const Args &args, const Paths &paths)
 diff -Naur -ruB chatterino7-master/src/widgets/dialogs/SettingsDialog.cpp chatterino7-nativeQT/src/widgets/dialogs/SettingsDialog.cpp
 --- chatterino7-master/src/widgets/dialogs/SettingsDialog.cpp	2024-09-28 16:12:58.000000000 +0000
 +++ chatterino7-nativeQT/src/widgets/dialogs/SettingsDialog.cpp	2024-09-29 06:55:58.189097299 +0000
