@@ -6,6 +6,8 @@ These themes support transparent tabs when used in conjunction with transparent 
 
 However Chatterino is hardcoded to use QT's Fusion style and it must be patched in order to [use your system's native QT style engine.](https://github.com/hekel/chatterino-stuffs)
 
+#### Note: Since Chatterino/chatterino2#6137 window background transparency is forced on Linux, affecting the Kv/QT transparency method we relied on. These themes may no longer look as intended. I'll update these as I have time.
+
 ## Chocula
 Designed to compliment the [Chocula Desktop Theme](https://github.com/SueDonham/chocula-desktop-theme); a chocolaty spin on the popular [Dracula Theme](https://github.com/dracula/gtk)
 
